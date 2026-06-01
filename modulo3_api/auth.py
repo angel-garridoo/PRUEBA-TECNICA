@@ -40,7 +40,7 @@ def verify_token(token: str = Depends(oauth2_scheme)) -> str:
 
     credentials_exception = HTTPException(
         status_code=status.HTTP_401_UNAUTHORIZED,
-        detail="Token inválido o expirado"
+        detail="Token inválido o expirado",
         headers={"WWW-Authenticate": "Bearer"},
     )
     try:
