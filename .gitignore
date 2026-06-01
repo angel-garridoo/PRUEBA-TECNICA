@@ -1,0 +1,23 @@
+# Variables de entorno y secretos locales
+.env
+.env.*
+!.env.example
+
+# Entornos virtuales de Python
+.venv/
+venv/
+env/
+
+# Archivos generados por Python y pytest
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Repositorio local de Odoo usado solo para desarrollo
+modulo1_odoo/odoo/
+
+# Archivos locales del sistema o editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
