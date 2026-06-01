@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
+    <!-- Vista formulario: muestra el flujo de aprobacion y el detalle de la solicitud. -->
     <record id="hr_request_view_form" model="ir.ui.view">
         <field name="name">hr.request.view.form</field>
         <field name="model">hr.request</field>
         <field name="arch" type="xml">
             <form string="Solicitud Interna">
 
+                <!-- Los botones solo se muestran cuando la solicitud esta en estado nuevo. -->
                 <header>
 
                     <button
@@ -31,6 +33,7 @@
 
                 <sheet>
                     <group>
+                        <!-- Campos principales que identifican la solicitud y su empleado. -->
                         <group string="Información General">
                             <field name="nombre"/>
                             <field name="tipo"/>
@@ -48,6 +51,7 @@
                     </notebook>
                 </sheet>
 
+                <!-- Chatter habilitado por mail.thread y mail.activity.mixin. -->
                 <div class="oe_chatter">
                     <field name="message_follower_ids"/>
                     <field name="activity_ids"/>
@@ -58,6 +62,7 @@
         </field>
     </record>
 
+    <!-- Vista lista: facilita revisar rapidamente estado, empleado y tipo de solicitud. -->
     <record id="hr_request_view_list" model="ir.ui.view">
         <field name="name">hr.request.view.list</field>
         <field name="model">hr.request</field>
@@ -75,6 +80,7 @@
         </field>
     </record>
 
+    <!-- Vista de busqueda: filtros operativos por estado, tipo y agrupaciones comunes. -->
     <record id="hr_request_view_search" model="ir.ui.view">
         <field name="name">hr.request.view.search</field>
         <field name="model">hr.request</field>
@@ -130,6 +136,7 @@
     </record>
 
 
+    <!-- Accion que abre el modelo desde el menu en vistas lista y formulario. -->
     <record id="hr_request_action" model="ir.actions.act_window">
         <field name="name">Solicitudes Internas</field>
         <field name="res_model">hr.request</field>

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
+    <!-- Solicitud pendiente para validar el flujo inicial y los botones de accion. -->
     <record id="hr_request_demo_1" model="hr.request">
         <field name="nombre">Solicitud de Vacaciones Diciembre</field>
         <field name="tipo">vacaciones</field>
@@ -12,6 +13,7 @@
         </field>
     </record>
 
+    <!-- Solicitud aprobada para comprobar estados y decoraciones de la vista lista. -->
     <record id="hr_request_demo_2" model="hr.request">
         <field name="nombre">Permiso por Cita Médica</field>
         <field name="tipo">permiso</field>
@@ -23,6 +25,7 @@
         </field>
     </record>
 
+    <!-- Solicitud rechazada para probar filtros, busqueda y colores por estado. -->
     <record id="hr_request_demo_3" model="hr.request">
         <field name="nombre">Anticipo de Nómina Octubre</field>
         <field name="tipo">anticipo</field>

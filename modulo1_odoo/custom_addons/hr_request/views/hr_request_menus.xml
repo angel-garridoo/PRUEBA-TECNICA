@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
+    <!-- Menu raiz del modulo dentro del backend de Odoo. -->
     <menuitem
         id="hr_request_menu_root"
         name="Solicitudes"
         sequence="10"/>
 
+    <!-- Agrupa las opciones operativas del modulo. -->
     <menuitem
         id="hr_request_menu_main"
         name="Gestión de Solicitudes"
         parent="hr_request_menu_root"
         sequence="10"/>
 
+    <!-- Entrada que abre la accion definida en hr_request_views.xml. -->
     <menuitem
         id="hr_request_menu_list"
         name="Todas las Solicitudes"

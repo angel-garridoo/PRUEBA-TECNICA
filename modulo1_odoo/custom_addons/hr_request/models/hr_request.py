@@ -1,15 +1,17 @@
 # hr_request/models/hr_request.py
-from odoo import models, fields, api
+from odoo import models, fields
 # pyrefly: ignore [missing-import]
 from odoo.exceptions import UserError 
 
 
 class HrRequest(models.Model):
 
+    # Nombre tecnico usado por vistas, seguridad y acciones.
     _name = 'hr.request'
 
     _description = 'Solicitud Interna de Empleado'
 
+    # mail.thread y mail.activity.mixin habilitan chatter y actividades.
     _inherit = ['mail.thread', 'mail.activity.mixin']
 
     nombre = fields.Char(
@@ -35,6 +37,7 @@ class HrRequest(models.Model):
         comodel_name='hr.employee',
         string='Empleado',
         required=True,
+        # Se restringe el borrado del empleado si existen solicitudes asociadas.
         ondelete='restrict',
         tracking=True
     )
