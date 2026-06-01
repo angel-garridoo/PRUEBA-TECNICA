@@ -6,26 +6,30 @@ import database as db
 
 app = FastAPI(
     title="Mini API de Tareas",
-    description="API REST con autenticación JWT para gestión de tareas",
+    description="API REST con autenticacion JWT para gestion de tareas",
     version="1.0.0"
 )
+
 
 @app.post("/auth/login", response_model=TokenResponse)
 def login(form_data: OAuth2PasswordRequestForm = Depends()):
 
+    # Swagger envia username y password como formulario OAuth2.
     if not verify_credentials(form_data.username, form_data.password):
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Usuario o contraseña incorrectos"
+            detail="Usuario o contrasena incorrectos"
         )
     token = create_access_token(form_data.username)
     return TokenResponse(access_token=token)
 
 
+# Las rutas de tareas estan protegidas con JWT mediante verify_token.
 @app.get("/tasks", response_model=list[Tarea])
 def list_tasks(current_user: str = Depends(verify_token)):
 
     return db.get_all_tasks()
+
 
 @app.post("/tasks", response_model=Tarea, status_code=status.HTTP_201_CREATED)
 def create_task(task: TareaCreate, current_user: str = Depends(verify_token)):
@@ -33,9 +37,10 @@ def create_task(task: TareaCreate, current_user: str = Depends(verify_token)):
     new_task = db.create_task(
         titulo=task.titulo,
         descripcion=task.descripcion,
-        estado=task.estado.value  
+        estado=task.estado.value
     )
     return new_task
+
 
 @app.patch("/tasks/{task_id}", response_model=Tarea)
 def update_task(
@@ -51,6 +56,7 @@ def update_task(
             detail=f"Tarea con id {task_id} no encontrada"
         )
     return updated
+
 
 @app.delete("/tasks/{task_id}", status_code=status.HTTP_204_NO_CONTENT)
 def delete_task(task_id: int, current_user: str = Depends(verify_token)):
